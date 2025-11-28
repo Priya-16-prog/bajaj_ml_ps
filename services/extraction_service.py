@@ -113,6 +113,8 @@ class ExtractionService:
         }
     
     async def _extract_page_data(self, page_no: str, image_base64: str) -> Optional[Dict[str, Any]]:
+        logger.error(f"[DEBUG] Length of image_base64 = {len(image_base64)}")
+
         """Extract data from a single page"""
         
         system_prompt = """You are an expert at extracting structured data from bills and invoices. 
