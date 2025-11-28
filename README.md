@@ -108,11 +108,10 @@ $body = @{
   document = "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"
 } | ConvertTo-Json
 
-Invoke-RestMethod `
-  -Uri "https://bajajmlps-production.up.railway.app/extract-bill-data" `
-  -Method POST `
-  -Headers @{ "Content-Type" = "application/json" } `
-  -Body $body
+ curl -Method POST `
+>>   -Uri "https://bajajmlps-production.up.railway.app/extract-bill-data" `
+>>   -Headers @{ "Content-Type" = "application/json" } `
+>>   -Body $body | Select-Object -ExpandProperty Content
 ```
 
 # Solution Logic
