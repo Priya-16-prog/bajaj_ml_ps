@@ -6,7 +6,7 @@ import requests
 import json
 import sys
 
-API_URL = "bajajmlps-production.up.railway.app"
+API_URL = "https://bajajmlps-production.up.railway.app"
 
 
 def test_extraction(document_url: str):
