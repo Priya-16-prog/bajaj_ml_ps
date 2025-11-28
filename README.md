@@ -1,6 +1,6 @@
 # Bajaj Health Datathon - Bill Data Extraction Pipeline
 
-## 📌 Overview
+## Overview
 This project is an automated **bill data extraction pipeline** designed for the Bajaj Health Datathon.  
 It processes **medical invoices (images/PDFs)** and extracts granular line items while ensuring:
 
@@ -12,7 +12,7 @@ The solution is deployed as a **FastAPI web service on Railway**.
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 - **Framework:** FastAPI (Python 3.9+)
 - **AI Model:** Azure OpenAI (GPT-4 Vision / GPT-4.1 Vision)
@@ -21,7 +21,7 @@ The solution is deployed as a **FastAPI web service on Railway**.
 
 ---
 
-# 🔌 API Documentation
+# API Documentation
 
 ## **Endpoint Details**
 
@@ -34,7 +34,7 @@ The solution is deployed as a **FastAPI web service on Railway**.
 
 ---
 
-## 📥 Request Format
+## Request Format
 
 Send a public URL pointing to an image or PDF.
 
@@ -44,7 +44,7 @@ Send a public URL pointing to an image or PDF.
 }
 ```
 
-## 📤 Response Format
+## Response Format
 
 The API returns extracted line items and the mathematically reconciled total.
 
@@ -71,10 +71,10 @@ The API returns extracted line items and the mathematically reconciled total.
 }
 ```
 
-# 🧪 Testing the API
+# Testing the API
 
 You can test the deployed API using any of the following:
-## ✅ 1. Python Script
+## 1. Python Script
 
 ```json
 import requests
@@ -92,10 +92,9 @@ try:
     print(json.dumps(response.json(), indent=2))
 except Exception as e:
     print(f"Error: {e}")
-
 ```
 
-## ✅ 2. cURL (Linux/Mac)
+## 2. cURL (Linux/Mac)
 
 ```json 
 curl -X POST "https://bajajmlps-production.up.railway.app/extract-bill-data" \
@@ -103,7 +102,7 @@ curl -X POST "https://bajajmlps-production.up.railway.app/extract-bill-data" \
      -d '{"document": "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"}'
 ```
 
-## ✅ 3. PowerShell (Windows)
+## 3. PowerShell (Windows)
 ```json
 $body = @{
   document = "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"
@@ -116,7 +115,7 @@ Invoke-RestMethod `
   -Body $body
 ```
 
-# 🧠 Solution Logic
+# Solution Logic
 
 Input: Fetches document from URL; converts PDFs to high-res images.
 
