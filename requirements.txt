@@ -11,4 +11,3 @@ python-dotenv==1.0.0
 numpy>=1.26.0
 opencv-python==4.8.1.78
 setuptools>=65.0.0
-
