@@ -1,27 +1,52 @@
-Bajaj Health Datathon - Bill Data Extraction Pipeline
-📌 Overview
-This project is an automated bill data extraction pipeline designed for the Bajaj Health Datathon. It processes medical invoices (images/PDFs) to extract granular line items, ensuring mathematical reconciliation of totals and avoidance of double-counting (subtotals vs. items).
-The solution is deployed as a FastAPI service on Railway, powered by Azure OpenAI (GPT-4 Vision) for high-accuracy extraction.
-⚙️ Tech Stack
-Framework: FastAPI (Python 3.9+)
-AI Model: Azure OpenAI (GPT-4 Vision)
-PDF/Image Processing: PyMuPDF, Pillow, OpenCV
-Deployment: Railway
-🔌 API Documentation
-Endpoint Details
-Base URL: https://bajajmlps-production.up.railway.app
-Route: /extract-bill-data
-Method: POST
-Content-Type: application/json
-Request Format
-The API accepts a public URL to an image or PDF.
+# Bajaj Health Datathon - Bill Data Extraction Pipeline
+
+## 📌 Overview
+This project is an automated **bill data extraction pipeline** designed for the Bajaj Health Datathon.  
+It processes **medical invoices (images/PDFs)** and extracts granular line items while ensuring:
+
+- No double-counting of totals/subtotals  
+- Accurate mathematical reconciliation  
+- High-accuracy extraction using **Azure OpenAI GPT-4 Vision**
+
+The solution is deployed as a **FastAPI web service on Railway**.
+
+---
+
+## ⚙️ Tech Stack
+
+- **Framework:** FastAPI (Python 3.9+)
+- **AI Model:** Azure OpenAI (GPT-4 Vision / GPT-4.1 Vision)
+- **Processing:** PyMuPDF (PDF), Pillow (images), OpenCV
+- **Deployment:** Railway
+
+---
+
+# 🔌 API Documentation
+
+## **Endpoint Details**
+
+| Property | Value |
+|---------|--------|
+| **Base URL** | `https://bajajmlps-production.up.railway.app` |
+| **Route** | `/extract-bill-data` |
+| **Method** | `POST` |
+| **Content-Type** | `application/json` |
+
+---
+
+## 📥 Request Format
+
+Send a public URL pointing to an image or PDF.
+
+```json
 {
-  "document": "[https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png](https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png)"
+  "document": "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"
 }
 
+## 📤 Response Format
 
-Response Format
-Returns extracted line items and the mathematically reconciled total.
+The API returns extracted line items and the mathematically reconciled total.
+
 {
   "is_success": true,
   "data": {
@@ -43,18 +68,20 @@ Returns extracted line items and the mathematically reconciled total.
   }
 }
 
+# 🧪 Testing the API
 
-🧪 Testing the API (Important)
-You can test the deployed solution using the methods below.
-1. Python Script
+You can test the deployed API using any of the following:
+## ✅ 1. Python Script
+
 import requests
 import json
 
-url = "[https://bajajmlps-production.up.railway.app/extract-bill-data](https://bajajmlps-production.up.railway.app/extract-bill-data)"
+url = "https://bajajmlps-production.up.railway.app/extract-bill-data"
 payload = {
-    "document": "[https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png](https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png)"
+    "document": "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"
 }
-headers = {'Content-Type': 'application/json'}
+
+headers = {"Content-Type": "application/json"}
 
 try:
     response = requests.post(url, headers=headers, json=payload)
@@ -62,25 +89,31 @@ try:
 except Exception as e:
     print(f"Error: {e}")
 
+## ✅ 2. cURL (Linux/Mac)
 
-2. cURL (Terminal)
-curl -X POST "[https://bajajmlps-production.up.railway.app/extract-bill-data](https://bajajmlps-production.up.railway.app/extract-bill-data)" \
+curl -X POST "https://bajajmlps-production.up.railway.app/extract-bill-data" \
      -H "Content-Type: application/json" \
-     -d '{"document": "[https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png](https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png)"}'
+     -d '{"document": "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"}'
 
 
-3. PowerShell (Windows)
-$body = @{ document = "[https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png](https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png)" } | ConvertTo-Json
-Invoke-RestMethod -Uri "[https://bajajmlps-production.up.railway.app/extract-bill-data](https://bajajmlps-production.up.railway.app/extract-bill-data)" -Method Post -Headers @{ "Content-Type" = "application/json" } -Body $body
+## ✅ 3. PowerShell (Windows)
 
+$body = @{
+  document = "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"
+} | ConvertTo-Json
 
-🧠 Solution Logic
+Invoke-RestMethod `
+  -Uri "https://bajajmlps-production.up.railway.app/extract-bill-data" `
+  -Method POST `
+  -Headers @{ "Content-Type" = "application/json" } `
+  -Body $body
+
+# 🧠 Solution Logic
+
 Input: Fetches document from URL; converts PDFs to high-res images.
+
 Extraction: Azure GPT-4 Vision identifies table structures and line items.
+
 Filtration: Strictly excludes "Subtotal", "GST", and "Balance Due" rows to prevent double-counting.
+
 Reconciliation: Calculates reconciled_amount by summing individual item_amount values to verify accuracy against the bill's grand total.
-⚠️ Environment Variables (For Local Dev)
-USE_AZURE_OPENAI=true
-AZURE_OPENAI_ENDPOINT=https://<your-resource>.openai.azure.com
-AZURE_OPENAI_API_KEY=<your-key>
-AZURE_OPENAI_DEPLOYMENT_NAME=<your-deployment>
