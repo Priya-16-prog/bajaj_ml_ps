@@ -60,7 +60,7 @@ class ExtractionService:
                 raise ValueError("OPENAI_API_KEY environment variable is required")
             
             self.client = OpenAI(api_key=api_key)
-            self.model = os.getenv("OPENAI_MODEL", "gpt-4-vision-preview")
+            self.model = os.getenv("OPENAI_MODEL", "gpt-4.1")
             logger.info(f"Using standard OpenAI with model: {self.model}")
         
         self.token_usage = {
