@@ -40,7 +40,7 @@ Send a public URL pointing to an image or PDF.
 
 ```json
 {
-  "document": "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"
+  "document": "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png](https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_3.png?sv=2025-07-05&spr=https&st=2025-11-24T14%3A24%3A39Z&se=2026-11-25T14%3A24%3A00Z&sr=b&sp=r&sig=egKAmIUms8H5f3kgrGXKvcfuBVlQp0Qc2tsfxdvRgUY%3D"
 }
 ```
 
@@ -82,7 +82,7 @@ import json
 
 url = "https://bajajmlps-production.up.railway.app/extract-bill-data"
 payload = {
-    "document": "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"
+    "document": "[https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png](https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_3.png?sv=2025-07-05&spr=https&st=2025-11-24T14%3A24%3A39Z&se=2026-11-25T14%3A24%3A00Z&sr=b&sp=r&sig=egKAmIUms8H5f3kgrGXKvcfuBVlQp0Qc2tsfxdvRgUY%3D)"
 }
 
 headers = {"Content-Type": "application/json"}
@@ -99,13 +99,13 @@ except Exception as e:
 ```bash
 curl -X POST "https://bajajmlps-production.up.railway.app/extract-bill-data" \
      -H "Content-Type: application/json" \
-     -d '{"document": "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"}'
+     -d '{"document": "[https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png](https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_3.png?sv=2025-07-05&spr=https&st=2025-11-24T14%3A24%3A39Z&se=2026-11-25T14%3A24%3A00Z&sr=b&sp=r&sig=egKAmIUms8H5f3kgrGXKvcfuBVlQp0Qc2tsfxdvRgUY%3D)"}'
 ```
 
 ## 3. PowerShell (Windows)
 ```powershell
 $body = @{
-  document = "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"
+  document = "[https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png](https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_3.png?sv=2025-07-05&spr=https&st=2025-11-24T14%3A24%3A39Z&se=2026-11-25T14%3A24%3A00Z&sr=b&sp=r&sig=egKAmIUms8H5f3kgrGXKvcfuBVlQp0Qc2tsfxdvRgUY%3D)"
 } | ConvertTo-Json
 
  curl -Method POST `
