@@ -1,12 +1,12 @@
 # Bajaj Health Datathon - Bill Data Extraction Pipeline
 
-## 📝 Overview
+##  Overview
 
 This repository contains the solution for the Bajaj Health Datathon. The goal of this project is to build an automated, accurate bill data extraction pipeline that processes medical invoices (images), extracts granular line-item details, and ensures mathematical reconciliation of totals without double-counting.
 
 The solution is deployed as an API endpoint that accepts document URLs and returns structured JSON data containing page-wise items and calculated totals.
 
-## 🚀 Problem Statement
+##  Problem Statement
 
 The challenge requires designing a model to:
 
@@ -14,11 +14,11 @@ The challenge requires designing a model to:
 2. **Avoid Redundancy**: Ensure line items are not double-counted (e.g., confusing sub-totals with line items).
 3. **Reconcile Totals**: Calculate the `reconciled_amount` by summing individual line items to verify accuracy against the actual bill total.
 
-## 🛠️ Tech Stack & Tools
+##  Tech Stack & Tools
 
 - **Language**: Python 3.9+
 - **Framework**: FastAPI (for API deployment)
-- **AI/LLM Model**: Azure OpenAI GPT-4 Vision / OpenAI GPT-4 Vision
+- **AI/LLM Model**: Azure OpenAI GPT-4.1
 - **Image Processing**: Pillow (PIL), OpenCV
 - **PDF Processing**: PyMuPDF (fitz)
 - **Data Validation**: Pydantic
@@ -31,7 +31,7 @@ The input image URL is fetched and processed. If the bill spans multiple pages, 
 
 ### 2. Information Extraction
 
-We utilize **Azure OpenAI GPT-4 Vision** (or OpenAI GPT-4 Vision) to interpret the layout of the invoice. The model is prompted to:
+We utilize **Azure OpenAI GPT-4.1 Vision** to interpret the layout of the invoice. The model is prompted to:
 
 - Identify the main table structure.
 - Distinguish between individual line items and summary rows (Sub-total, GST, Grand Total) to prevent double counting.
