@@ -76,7 +76,7 @@ The API returns extracted line items and the mathematically reconciled total.
 You can test the deployed API using any of the following:
 ## 1. Python Script
 
-```json
+```python
 import requests
 import json
 
@@ -96,14 +96,14 @@ except Exception as e:
 
 ## 2. cURL (Linux/Mac)
 
-```json 
+```bash
 curl -X POST "https://bajajmlps-production.up.railway.app/extract-bill-data" \
      -H "Content-Type: application/json" \
      -d '{"document": "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"}'
 ```
 
 ## 3. PowerShell (Windows)
-```json
+```powershell
 $body = @{
   document = "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"
 } | ConvertTo-Json
