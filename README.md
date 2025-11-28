@@ -42,11 +42,13 @@ Send a public URL pointing to an image or PDF.
 {
   "document": "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"
 }
+```
 
 ## 📤 Response Format
 
 The API returns extracted line items and the mathematically reconciled total.
 
+```json
 {
   "is_success": true,
   "data": {
@@ -67,12 +69,14 @@ The API returns extracted line items and the mathematically reconciled total.
     "reconciled_amount": 448.0
   }
 }
+```
 
 # 🧪 Testing the API
 
 You can test the deployed API using any of the following:
 ## ✅ 1. Python Script
 
+```json
 import requests
 import json
 
@@ -89,15 +93,18 @@ try:
 except Exception as e:
     print(f"Error: {e}")
 
+```
+
 ## ✅ 2. cURL (Linux/Mac)
 
+```json 
 curl -X POST "https://bajajmlps-production.up.railway.app/extract-bill-data" \
      -H "Content-Type: application/json" \
      -d '{"document": "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"}'
-
+```
 
 ## ✅ 3. PowerShell (Windows)
-
+```json
 $body = @{
   document = "https://hackrx.blob.core.windows.net/assets/datathon-IIT/sample_2.png"
 } | ConvertTo-Json
@@ -107,6 +114,7 @@ Invoke-RestMethod `
   -Method POST `
   -Headers @{ "Content-Type" = "application/json" } `
   -Body $body
+```
 
 # 🧠 Solution Logic
 
