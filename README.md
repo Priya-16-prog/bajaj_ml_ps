@@ -109,9 +109,9 @@ $body = @{
 } | ConvertTo-Json
 
  curl -Method POST `
->>   -Uri "https://bajajmlps-production.up.railway.app/extract-bill-data" `
->>   -Headers @{ "Content-Type" = "application/json" } `
->>   -Body $body | Select-Object -ExpandProperty Content
+   -Uri "https://bajajmlps-production.up.railway.app/extract-bill-data" `
+   -Headers @{ "Content-Type" = "application/json" } `
+   -Body $body | Select-Object -ExpandProperty Content
 ```
 
 # Solution Logic
