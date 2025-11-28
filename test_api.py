@@ -6,7 +6,7 @@ import requests
 import json
 import sys
 
-API_URL = "http://localhost:8000/extract-bill-data"
+API_URL = "bajajmlps-production.up.railway.app"
 
 
 def test_extraction(document_url: str):
